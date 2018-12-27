@@ -64,8 +64,6 @@
             <log level="custom">
                 <property expression="$ctx:redirectUrl" name="*********redirect url*********"/>
             </log>
-            <property name="HTTP_SC" scope="axis2" type="STRING" value="302"/>
-            <header expression="$ctx:redirectUrl" name="Location" scope="transport"/>
             <respond/>
         </inSequence>
         <outSequence/>

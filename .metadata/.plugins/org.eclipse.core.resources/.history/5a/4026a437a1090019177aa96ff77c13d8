@@ -55,17 +55,11 @@
     </resource>
     <resource methods="GET" uri-template="/aoc?aocToken={token}">
         <inSequence>
-            <property expression="$url:aocToken" name="aocToken" scope="default" type="STRING"/>
+            <property expression="$url:token" name="aocToken" scope="default" type="STRING"/>
             <log>
                 <property expression="$ctx:aocToken" name="****aoc token**"/>
             </log>
             <sequence key="aocRequestRetriveSequence"/>
-            <property expression="fn:concat('http://api.centili.com/payment/widget?apikey=',$ctx:apiKey,'&amp;country=',$ctx:country,'&amp;price=',$ctx:price,'&amp;returnurl',$ctx:returnUrl,'&amp;reference=',$ctx:reference,'&amp;theme=',$ctx:theme,'&amp;uuid=',$ctx:aocToken)" name="redirectUrl" scope="default" type="STRING"/>
-            <log level="custom">
-                <property expression="$ctx:redirectUrl" name="*********redirect url*********"/>
-            </log>
-            <property name="HTTP_SC" scope="axis2" type="STRING" value="302"/>
-            <header expression="$ctx:redirectUrl" name="Location" scope="transport"/>
             <respond/>
         </inSequence>
         <outSequence/>

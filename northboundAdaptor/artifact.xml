@@ -11,4 +11,7 @@
     <artifact name="aocErrorLogTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/templates/aocErrorLogTemplate.xml</file>
     </artifact>
+    <artifact name="aocRequestRetriveSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/aocRequestRetriveSequence.xml</file>
+    </artifact>
 </artifacts>

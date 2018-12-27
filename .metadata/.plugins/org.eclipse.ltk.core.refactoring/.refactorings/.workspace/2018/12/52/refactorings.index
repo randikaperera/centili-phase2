@@ -1,2 +1,3 @@
 1545810011210	Delete resource 'northboundAdaptor/src/main/synapse-config/templates/onErrorSequenceTemplate.xml'
 1545884370488	Delete resource 'northboundAdaptor/src/main/synapse-config/templates/aocLoggerTemplate.xml'
+1545905385275	Delete resource 'northboundAdaptor/src/main/synapse-config/templates/aocInfoLogtemplate.xml'

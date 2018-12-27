@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="centiliRedirectionSequence" onError="aocErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property name="sequenceName" scope="default" type="STRING" value="centiliRedirectionSequence"/>
+    <property expression="fn:concat('http://api.centili.com/payment/widget?apikey=',$ctx:apiKey,'&amp;country=',$ctx:country,'&amp;price=',$ctx:price,'&amp;returnurl',$ctx:returnUrl,'&amp;reference=',$ctx:reference,'&amp;theme=',$ctx:theme,'&amp;uuid=',$ctx:aocToken)" name="redirectUrl" scope="default" type="STRING"/>
+    <log level="custom">
+        <property expression="$ctx:redirectUrl" name="*********redirect url*********"/>
+    </log>
+    <property name="HTTP_SC" scope="axis2" type="STRING" value="302"/>
+    <header expression="$ctx:redirectUrl" name="Location" scope="transport"/>
+    <call-template description="Call: aocInfoLogTemplate" target="aocInfoLogTemplate">
+        <with-param name="sequenceName" value="$ctx:aocRequestStoreSequence"/>
+        <with-param name="logMessage" value="{fn:concat('Successfully redirected to ',$ctx:redirectUrl)}"/>
+    </call-template>
+    <respond/>
+</sequence>

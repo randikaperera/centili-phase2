@@ -14,4 +14,10 @@
     <artifact name="aocRequestRetriveSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/aocRequestRetriveSequence.xml</file>
     </artifact>
+    <artifact name="aocInfoLogTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/aocInfoLogTemplate.xml</file>
+    </artifact>
+    <artifact name="centiliRedirectionSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/centiliRedirectionSequence.xml</file>
+    </artifact>
 </artifacts>

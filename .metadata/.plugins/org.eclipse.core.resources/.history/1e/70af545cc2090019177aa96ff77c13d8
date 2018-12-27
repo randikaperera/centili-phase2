@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="aocInfoLogTemplate" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="synapseConfig"/>
+    <parameter name="logMessage"/>
+    <sequence>
+        <log level="custom">
+            <property expression="$func:synapseConfig" name="synapseConfig"/>
+            <property expression="$func:logMessage" name="logMessage"/>
+        </log>
+    </sequence>
+</template>

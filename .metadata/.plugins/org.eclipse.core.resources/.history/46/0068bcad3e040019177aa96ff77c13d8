@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/api" name="aocWrapper" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" url-mapping="/getAOCToken">
+        <inSequence>
+            <log level="custom">
+                <property name="*******status*******" value="hittting aoc token resource"/>
+                <property expression="$body" name="*******message body*******"/>
+            </log>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log level="custom">
+        <property name="status" value="******inside aocErrorSequence******"/>
+    </log>
+    <property description="errorLog" expression="fn:concat(' Error occurred in ',$ctx:sequenceName,' .ErrorReason :',$ctx:ERROR_DETAIL)" name="logMessage" scope="default" type="STRING"/>
+    <property name="errorCode" scope="default" type="STRING" value="AOC9999"/>
+    <property name="errorMessage" scope="default" type="STRING" value="sql error occurred"/>
+    <call-template description="Call: aocLoggerTemplate" target="aocErrorLogTemplate">
+        <with-param name="sequenceName" value="aocErrorSequence"/>
+        <with-param name="errorCode" value="{$ctx:errorCode}"/>
+        <with-param name="logMessage" value="{$ctx:logMessage}"/>
+    </call-template>
+    <payloadFactory description="" media-type="json">
+        <format>{
+			"data" :
+			{ "aocToken" : "$1",
+			"aocTransID" : "$2",
+			"errorCode": "$3",
+			"errorMessage": "$4"}
+			}</format>
+        <args>
+            <arg evaluator="xml" expression="$ctx:messageId"/>
+            <arg evaluator="xml" expression="$ctx:spTransID"/>
+            <arg evaluator="xml" expression="$ctx:errorCode"/>
+            <arg evaluator="xml" expression="$ctx:errorMessage"/>
+        </args>
+    </payloadFactory>
+    <respond/>
+</sequence>

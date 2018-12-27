@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log level="custom">
+        <property name="status" value="******inside aocErrorSequence******"/>
+    </log>
+    <property description="logMessage" expression="fn:concat(' ErrorCode :', $ctx:ERROR_CODE, ' ErrorMessage :',$ctx:ERROR_MESSAGE,' ErrorDetail ',$ctx:ERROR_DETAIL)" name="logMessage" scope="default" type="STRING"/>
+    <call-template description="Call: aocLoggerTemplate" target="aocLoggerTemplate">
+        <with-param name="sequenceName" value="aocErrorSequence"/>
+        <with-param name="statusCode" value="{$axis2:HTTP_SC}"/>
+        <with-param name="logMessage" value="{$ctx:logMessage}"/>
+        <with-param name="logLevel" value="ERROR"/>
+    </call-template>
+    <payloadFactory description="" media-type="json">
+        <format>{"status":"error","errorDetail":"$1"}</format>
+        <args>
+            <arg evaluator="xml" expression="$ctx:ERROR_DETAIL"/>
+        </args>
+    </payloadFactory>
+    <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+    <respond/>
+</sequence>

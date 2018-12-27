@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <call-template description="Call: logger-v3-template" target="logger-v3-template">
+        <with-param name="integrationReference" value="{$trp:integrationReference}"/>
+        <with-param name="integrationVersion" value="{$trp:integrationVersion}"/>
+        <with-param name="sequenceName" value="receive-customer-invoice-v1-fault-sequence"/>
+        <with-param name="logMessage" value="{$ctx:logMessage}"/>
+        <with-param name="logLevel" value="ERROR"/>
+        <with-param name="unhandledError" value="true"/>
+    </call-template>
+    <drop/>
+</sequence>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="aocLoggerTemplate" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="sequenceName"/>
+    <parameter name="statusCode"/>
+    <parameter name="logMessage"/>
+    <parameter name="logLevel"/>
+    <sequence/>
+</template>

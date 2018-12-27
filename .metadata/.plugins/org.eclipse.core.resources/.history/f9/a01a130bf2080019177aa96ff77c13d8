@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="aocLoggerTemplate" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="sequenceName"/>
+    <parameter name="statusCode"/>
+    <parameter name="logMessage"/>
+    <parameter name="logLevel"/>
+    <sequence>
+        <log category="ERROR">
+            <property expression="$func:sequenceName" name="sequenceName"/>
+            <property expression="$func:statusCode" name="statusCode"/>
+            <property expression="$func:logMessage" name="logMessage"/>
+            <property expression="$func:logLevel" name="logLevel"/>
+        </log>
+    </sequence>
+</template>

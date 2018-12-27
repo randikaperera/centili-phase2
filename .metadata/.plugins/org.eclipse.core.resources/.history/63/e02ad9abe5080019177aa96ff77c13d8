@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <call-template description="Call: aocLoggerTemplate" target="aocLoggerTemplate">
+        <with-param name="sequenceName" value="aocErrorSequence"/>
+        <with-param name="statusCode" value="{$axis2:HTTP_SC}"/>
+        <with-param name="logMessage" value="{$ctx:logMessage}"/>
+        <with-param name="logLevel" value="ERROR"/>
+    </call-template>
+    <drop/>
+</sequence>

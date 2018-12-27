@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="aocWrapper" groupId="com.example.northboundAdaptor.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/aocWrapper.xml</file>
+    </artifact>
+    <artifact name="aocRequestStoreSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/aocRequestStoreSequence.xml</file>
+    </artifact>
+    <artifact name="aocErrorSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/aocErrorSequence.xml</file>
+    </artifact>
+    <artifact name="aocLoggerTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/aocLoggerTemplate.xml</file>
+    </artifact>
+    <artifact name="aocErrorLogTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/aocErrorLogTemplate.xml</file>
+    </artifact>
+</artifacts>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/api" name="aocWrapper" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" url-mapping="/getAOCToken">
+        <inSequence>
+            <log level="custom">
+                <property name="*******status*******" value="hittting aoc token resource"/>
+                <property expression="$body/*" name="*******message body*******"/>
+                <property expression="$body//apiKey" name="*******api key*******"/>
+            </log>
+            <property expression="$body//apiKey" name="apiKey" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="username" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="spTransID" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="description" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="currency" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="amount" scope="default" type="DOUBLE"/>
+            <property expression="$body//apiKey" name="onBehalfOf" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="purchaseCategoryCode" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="referenceCode" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="channel" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="operator" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="taxAmount" scope="default" type="DOUBLE"/>
+            <property expression="$body//apiKey" name="callbackURL" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="isSubscription" scope="default" type="BOOLEAN"/>
+            <property expression="$body//apiKey" name="subscriptionID" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="subscriptionName" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="subscriptionDuration" scope="default" type="INTEGER"/>
+            <property expression="$body//apiKey" name="unSubURL" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="contactInfo" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="contentURL" scope="default" type="STRING"/>
+            <property expression="$body//apiKey" name="isWallet" scope="default" type="BOOLEAN"/>
+            <property expression="$body//apiKey" name="isMobileAppAPI" scope="default" type="BOOLEAN"/>
+            <property expression="$body//apiKey" name="tacMSISDN" scope="default" type="STRING"/>
+            <dbreport description="This is to store payment data in centili db">
+                <connection>
+                    <pool>
+                        <dsName>jdbc/centili</dsName>
+                    </pool>
+                </connection>
+                <statement>
+                    <sql><![CDATA[INSERT INTO `centili`.`aocRequest`(
+`apiKey`,`username`,`spTransID`,`description`,`currency`,`amount`,`onBehalfOf`,`purchaseCategoryCode`,`referenceCode`,`channel`,`operator`,`taxAmount`,`callbackURL`,`isSubscription`,`subscriptionID`,
+`subscriptionName`,`subscriptionDuration`,`unSubURL`,`contactInfo`,`contentURL`,`isWallet`,`isMobileAppAPI`,`tacMSISDN`)
+VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);]]></sql>
+                    <parameter expression="get-property('apiKey')" type="CHAR"/>
+                    <parameter expression="get-property('username')" type="CHAR"/>
+                    <parameter expression="get-property('spTransID')" type="CHAR"/>
+                    <parameter expression="get-property('description')" type="CHAR"/>
+                    <parameter expression="get-property('currency')" type="CHAR"/>
+                    <parameter expression="get-property('amount')" type="DECIMAL"/>
+                    <parameter expression="get-property('onBehalfOf')" type="CHAR"/>
+                    <parameter expression="get-property('purchaseCategoryCode')" type="CHAR"/>
+                    <parameter expression="get-property('referenceCode')" type="CHAR"/>
+                    <parameter expression="get-property('channel')" type="CHAR"/>
+                    <parameter expression="get-property('operator')" type="CHAR"/>
+                    <parameter expression="get-property('taxAmount')" type="DECIMAL"/>
+                    <parameter expression="get-property('callbackURL')" type="CHAR"/>
+                    <parameter expression="get-property('isSubscription')" type="TINYINT"/>
+                    <parameter expression="get-property('subscriptionID')" type="CHAR"/>
+                    <parameter expression="get-property('subscriptionName')" type="CHAR"/>
+                    <parameter expression="get-property('subscriptionDuration')" type="INTEGER"/>
+                    <parameter expression="get-property('unSubURL')" type="CHAR"/>
+                    <parameter expression="get-property('contactInfo')" type="CHAR"/>
+                    <parameter expression="get-property('contentURL')" type="CHAR"/>
+                    <parameter expression="get-property('isWallet')" type="TINYINT"/>
+                    <parameter expression="get-property('isMobileAppAPI')" type="TINYINT"/>
+                    <parameter expression="get-property('tacMSISDN')" type="CHAR"/>
+                </statement>
+            </dbreport>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

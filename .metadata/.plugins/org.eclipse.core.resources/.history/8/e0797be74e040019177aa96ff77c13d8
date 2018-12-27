@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/api" name="aocWrapper" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" url-mapping="/getAOCToken">
+        <inSequence>
+            <log level="custom">
+                <property name="*******status*******" value="hittting aoc token resource"/>
+                <property expression="$body/*" name="*******message body*******"/>
+            </log>
+            <property expression="$body/apiKey" name="apiKey" scope="default" type="STRING"/>
+            <dbreport description="This is to store payment data in centili db">
+                <connection>
+                    <pool>
+                        <password>root</password>
+                        <driver>com.mysql.jdbc.Driver</driver>
+                        <url>jdbc:mysql://localhost:3306/centili</url>
+                        <user>root</user>
+                    </pool>
+                </connection>
+                <statement>
+                    <sql><![CDATA[INSERT INTO `centili`.`aocRequest`
+(
+`apiKey`)
+VALUES
+(
+'key1');]]></sql>
+                </statement>
+            </dbreport>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

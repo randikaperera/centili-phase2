@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/api" name="mockServices" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/payment/1_4/transaction?transactionid={tranId}&amp;amp;apikey={apiKey}">
+        <inSequence/>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

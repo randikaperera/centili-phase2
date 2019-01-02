@@ -4,7 +4,8 @@
     <property expression="fn:concat('http://api.centili.com/payment/widget?apikey=',$ctx:apiKey,'&amp;country=',$ctx:country,'&amp;price=',$ctx:price,'&amp;returnurl',$ctx:returnUrl,'&amp;reference=',$ctx:reference,'&amp;theme=',$ctx:theme,'&amp;uuid=',$ctx:aocToken)" name="redirectUrl" scope="default" type="STRING"/>
     <property name="HTTP_SC" scope="axis2" type="STRING" value="302"/>
     <header expression="$ctx:redirectUrl" name="Location" scope="transport"/>
-    <call-template description="Call: aocInfoLogTemplate" target="aocInfoLogTemplate">
+    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+        <with-param name="logCategory" value="INFO"/>
         <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
         <with-param name="logMessage" value="{fn:concat('Successfully redirected to ',$ctx:redirectUrl)}"/>
     </call-template>

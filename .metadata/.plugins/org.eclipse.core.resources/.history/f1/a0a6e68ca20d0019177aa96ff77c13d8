@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="paymentStatusResponseTemplate" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="status"/>
+    <parameter name="price"/>
+    <parameter name="msisdn"/>
+    <parameter name="clientId"/>
+    <parameter name="errorCode"/>
+    <parameter name="errorMessage"/>
+    <sequence>
+        <payloadFactory media-type="json">
+            <format>{
+					"transactionOperationStatus":"$1",
+					"totalAmountCharged":"$2",
+					"msisdn":"$3",
+					"clientCorrelator":"$4",
+					"errorCode":"$5",
+					"errorMessage":"$6"
+					}</format>
+            <args>
+                <arg evaluator="xml" expression="$func:status"/>
+                <arg evaluator="xml" expression="$func:price"/>
+                <arg evaluator="xml" expression="$func:msisdn"/>
+                <arg evaluator="xml" expression="$func:clientId"/>
+                <arg evaluator="xml" expression="$func:errorCode"/>
+                <arg evaluator="xml" expression="$func:errorMessage"/>
+            </args>
+        </payloadFactory>
+    </sequence>
+</template>

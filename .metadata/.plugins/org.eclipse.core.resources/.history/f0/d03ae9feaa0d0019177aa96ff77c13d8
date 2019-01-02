@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocRequestStoreSequence" onError="aocErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property name="sequenceName" scope="default" type="STRING" value="aocRequestStoreSequence"/>
+    <log level="custom">
+        <property name="status" value="******inside aocRequestStoreSequence******"/>
+    </log>
+    <dbreport description="This is to store payment data in centili db">
+        <connection>
+            <pool>
+                <dsName>jdbc/centili</dsName>
+            </pool>
+        </connection>
+        <statement>
+            <sql><![CDATA[INSERT INTO `centili`.`aocRequest`(
+`aocToken`,`apiKey`,`username`,`spTransID`,`description`,`currency`,`amount`,`onBehalfOf`,`purchaseCategoryCode`,`referenceCode`,`channel`,`operator`,`taxAmount`,`callbackURL`,`isSubscription`,`subscriptionID`,
+`subscriptionName`,`subscriptionDuration`,`unSubURL`,`contactInfo`,`contentURL`,`isWallet`,`isMobileAppAPI`,`tacMSISDN`,`country`,`price`,`returnUrl`,`reference`,`theme`)
+VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);]]></sql>
+            <parameter expression="get-property('aocToken')" type="CHAR"/>
+            <parameter expression="get-property('apiKey')" type="CHAR"/>
+            <parameter expression="get-property('username')" type="CHAR"/>
+            <parameter expression="get-property('spTransID')" type="CHAR"/>
+            <parameter expression="get-property('description')" type="CHAR"/>
+            <parameter expression="get-property('currency')" type="CHAR"/>
+            <parameter expression="get-property('amount')" type="DECIMAL"/>
+            <parameter expression="get-property('onBehalfOf')" type="CHAR"/>
+            <parameter expression="get-property('purchaseCategoryCode')" type="CHAR"/>
+            <parameter expression="get-property('referenceCode')" type="CHAR"/>
+            <parameter expression="get-property('channel')" type="CHAR"/>
+            <parameter expression="get-property('operator')" type="CHAR"/>
+            <parameter expression="get-property('taxAmount')" type="DECIMAL"/>
+            <parameter expression="get-property('callbackURL')" type="CHAR"/>
+            <parameter expression="get-property('isSubscription')" type="BIT"/>
+            <parameter expression="get-property('subscriptionID')" type="CHAR"/>
+            <parameter expression="get-property('subscriptionName')" type="CHAR"/>
+            <parameter expression="get-property('subscriptionDuration')" type="INTEGER"/>
+            <parameter expression="get-property('unSubURL')" type="CHAR"/>
+            <parameter expression="get-property('contactInfo')" type="CHAR"/>
+            <parameter expression="get-property('contentURL')" type="CHAR"/>
+            <parameter expression="get-property('isWallet')" type="BIT"/>
+            <parameter expression="get-property('isMobileAppAPI')" type="BIT"/>
+            <parameter expression="get-property('tacMSISDN')" type="CHAR"/>
+            <parameter expression="get-property('country')" type="CHAR"/>
+            <parameter expression="get-property('price')" type="CHAR"/>
+            <parameter expression="get-property('returnUrl')" type="CHAR"/>
+            <parameter expression="get-property('reference')" type="CHAR"/>
+            <parameter expression="get-property('theme')" type="CHAR"/>
+        </statement>
+    </dbreport>
+    <call-template description="Call: aocInfoLogTemplate" target="aocInfoLogTemplate">
+        <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
+        <with-param name="logMessage" value="AoC request saved successfully in database."/>
+    </call-template>
+</sequence>

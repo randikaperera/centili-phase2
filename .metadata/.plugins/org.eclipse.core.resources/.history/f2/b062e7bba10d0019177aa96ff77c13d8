@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/centili/api" name="mockServices" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/payment/1_4/transaction?transactionid={tranId}&amp;apikey={apiKey}">
+        <inSequence>
+            <!-- <payloadFactory media-type="json">
+	<format>{
+		"status": "ACCEPTED",
+		"errorMessage": null,
+		"transactionId": "3+enZv5EgW3N4M1j7I874Q==",
+		"clientId": "you7651f3df98d1b1cdd34e1313ca4e3592",
+		"apiKey": "0d213511cf2e2de4b309c37c1a66bddd",
+		"chargeURL": "http:\/\/47.88.241.13:8077\/partners\/infobipdr",
+		"wap": false,
+		"price": 5,
+		"countryCode": "ph",
+		"operatorCode": "PH_GLOBE",
+		"operatorType": "MOBILE",
+		"msisdn": "xxxx51258629",
+		"mcc": "515",
+		"mnc": "01",
+		"action": null,
+		"sessionStatus": "COMPLETED",
+		"urlRedirect": null,
+		"pinPattern": null,
+		"premiumInstructions": null,
+		"handshakeInstructions": null,
+		"shortCode": "2649",
+		"mtShortCode": "2649",
+		"smsBody": "CENT 5 PPS",
+		"message": null
+		}</format>
+	<args />
+</payloadFactory> -->
+            <payloadFactory media-type="json">
+                <format>{
+  "status": "SERVER-ERROR",
+  "errorMessage": internal error,
+  "transactionId": "3+enZv5EgW3N4M1j7I874Q==",
+  "clientId": "",
+  "apiKey": "",
+  "chargeURL": "http:\/\/47.88.241.13:8077\/partners\/infobipdr",
+  "wap": false,
+  "price": ,
+  "countryCode": "ph",
+  "operatorCode": "PH_GLOBE",
+  "operatorType": "MOBILE",
+  "msisdn": "",
+  "mcc": "515",
+  "mnc": "01",
+  "action": null,
+  "sessionStatus": "COMPLETED",
+  "urlRedirect": null,
+  "pinPattern": null,
+  "premiumInstructions": null,
+  "handshakeInstructions": null,
+  "shortCode": "2649",
+  "mtShortCode": "2649",
+  "smsBody": "CENT 5 PPS",
+  "message": null
+}</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

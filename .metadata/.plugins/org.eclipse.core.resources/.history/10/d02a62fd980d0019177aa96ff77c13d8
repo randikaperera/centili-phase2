@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="aocWrapper" groupId="com.example.northboundAdaptor.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/aocWrapper.xml</file>
+    </artifact>
+    <artifact name="aocRequestStoreSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/aocRequestStoreSequence.xml</file>
+    </artifact>
+    <artifact name="aocErrorSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/aocErrorSequence.xml</file>
+    </artifact>
+    <artifact name="aocErrorLogTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/aocErrorLogTemplate.xml</file>
+    </artifact>
+    <artifact name="aocRequestRetriveSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/aocRequestRetriveSequence.xml</file>
+    </artifact>
+    <artifact name="aocInfoLogTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/aocInfoLogTemplate.xml</file>
+    </artifact>
+    <artifact name="centiliRedirectionSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/centiliRedirectionSequence.xml</file>
+    </artifact>
+    <artifact name="aocRequestInitSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/aocRequestInitSequence.xml</file>
+    </artifact>
+    <artifact name="paymentChargeStatusRequestProcessingSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/paymentChargeStatusRequestProcessingSequence.xml</file>
+    </artifact>
+    <artifact name="chargeStatus" groupId="com.example.northboundAdaptor.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/chargeStatus.xml</file>
+    </artifact>
+    <artifact name="mockServices" groupId="com.example.northboundAdaptor.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/mockServices.xml</file>
+    </artifact>
+</artifacts>

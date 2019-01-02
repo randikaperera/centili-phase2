@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log level="custom">
+        <property name="status" value="******inside aocErrorSequence******"/>
+    </log>
+    <property description="errorLog" expression="fn:concat(' Error occurred in ',$ctx:sequenceName,' .ErrorReason :',$ctx:ERROR_DETAIL)" name="logMessage" scope="default" type="STRING"/>
+    <!-- need to set error code and message based on the error -->
+    <filter regex="invalid" source="get-property('tokenStatus')">
+        <then>
+            <property name="errorCode" scope="default" type="STRING" value="AOC0003"/>
+            <property name="errorMessage" scope="default" type="STRING" value="invalid aoc token found"/>
+        </then>
+        <else>
+            <filter regex=".*SQL Error.*" source="$ctx:ERROR_MESSAGE">
+                <then>
+                    <property name="errorCode" scope="default" type="STRING" value="AOC9999"/>
+                    <property name="errorMessage" scope="default" type="STRING" value="sql error occurred"/>
+                </then>
+                <else>
+                    <property name="errorCode" scope="default" type="STRING" value="AOC9999"/>
+                    <property name="errorMessage" scope="default" type="STRING" value="error in mediation"/>
+                </else>
+            </filter>
+        </else>
+    </filter>
+    <call-template description="Call: aocErrorLogTemplate" target="aocErrorLogTemplate">
+        <with-param name="sequenceName" value="aocErrorSequence"/>
+        <with-param name="errorCode" value="{$ctx:errorCode}"/>
+        <with-param name="logMessage" value="{$ctx:logMessage}"/>
+    </call-template>
+    <call-template description="Call: aocTokenResponseTemplate" target="aocTokenResponseTemplate">
+        <with-param name="aocToken" value="{$ctx:aocToken}"/>
+        <with-param name="spTransID" value="{$ctx:spTransID}"/>
+        <with-param name="errorCode" value="{$ctx:errorCode}"/>
+        <with-param name="errorMessage" value="{$ctx:errorMessage}"/>
+    </call-template>
+    <respond/>
+</sequence>

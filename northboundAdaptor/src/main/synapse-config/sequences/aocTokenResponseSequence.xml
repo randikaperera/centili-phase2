@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocTokenResponseSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <call-template description="Call: aocTokenResponseTemplate" target="aocTokenResponseTemplate">
+        <with-param name="aocToken" value="{$ctx:aocToken}"/>
+        <with-param name="spTransID" value="{$ctx:spTransID}"/>
+        <with-param name="errorCode" value="00"/>
+    </call-template>
+    <respond/>
+</sequence>

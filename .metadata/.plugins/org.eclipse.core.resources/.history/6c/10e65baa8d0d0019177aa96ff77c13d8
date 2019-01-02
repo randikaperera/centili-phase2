@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="chargeStatus" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="get" uri-template="http://api.centili.com/api/payment/1_4/transaction?transactionid={uri.var.aocTransID}&amp;apikey={uri.var.apiKey}"/>
+</endpoint>

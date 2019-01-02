@@ -8,16 +8,46 @@
     <artifact name="aocErrorSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/aocErrorSequence.xml</file>
     </artifact>
-    <artifact name="aocErrorLogTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/templates/aocErrorLogTemplate.xml</file>
-    </artifact>
     <artifact name="aocRequestRetriveSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/aocRequestRetriveSequence.xml</file>
     </artifact>
-    <artifact name="aocInfoLogTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/templates/aocInfoLogTemplate.xml</file>
-    </artifact>
     <artifact name="centiliRedirectionSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/centiliRedirectionSequence.xml</file>
+    </artifact>
+    <artifact name="aocRequestInitSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/aocRequestInitSequence.xml</file>
+    </artifact>
+    <artifact name="chargeStatus" groupId="com.example.northboundAdaptor.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/chargeStatus.xml</file>
+    </artifact>
+    <artifact name="mockServices" groupId="com.example.northboundAdaptor.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/mockServices.xml</file>
+    </artifact>
+    <artifact name="aocTokenResponseSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/aocTokenResponseSequence.xml</file>
+    </artifact>
+    <artifact name="paymentStatusResponseProcessingSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/paymentStatusResponseProcessingSequence.xml</file>
+    </artifact>
+    <artifact name="paymentStatusResponseTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/paymentStatusResponseTemplate.xml</file>
+    </artifact>
+    <artifact name="aocTokenResponseTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/aocTokenResponseTemplate.xml</file>
+    </artifact>
+    <artifact name="loggerTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/loggerTemplate.xml</file>
+    </artifact>
+    <artifact name="renewSubscriptionRequestSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/renewSubscriptionRequestSequence.xml</file>
+    </artifact>
+    <artifact name="renewSubscription" groupId="com.example.northboundAdaptor.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/renewSubscription.xml</file>
+    </artifact>
+    <artifact name="renewSubscriptionResponseSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/renewSubscriptionResponseSequence.xml</file>
+    </artifact>
+    <artifact name="renewSubscriptionResponseTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/renewSubscriptionResponseTemplate.xml</file>
     </artifact>
 </artifacts>

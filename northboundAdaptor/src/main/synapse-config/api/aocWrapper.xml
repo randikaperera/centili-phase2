@@ -2,53 +2,9 @@
 <api context="/api" name="aocWrapper" xmlns="http://ws.apache.org/ns/synapse">
     <resource methods="POST" url-mapping="/getAOCToken">
         <inSequence>
-            <property expression="$body//apiKey" name="apiKey" scope="default" type="STRING"/>
-            <property expression="$body//username" name="username" scope="default" type="STRING"/>
-            <property expression="$body//spTransID" name="spTransID" scope="default" type="STRING"/>
-            <property expression="$body//description" name="description" scope="default" type="STRING"/>
-            <property expression="$body//currency" name="currency" scope="default" type="STRING"/>
-            <property expression="$body//amount" name="amount" scope="default" type="DOUBLE"/>
-            <property expression="$body//onBehalfOf" name="onBehalfOf" scope="default" type="STRING"/>
-            <property expression="$body//purchaseCategoryCode" name="purchaseCategoryCode" scope="default" type="STRING"/>
-            <property expression="$body//referenceCode" name="referenceCode" scope="default" type="STRING"/>
-            <property expression="$body//channel" name="channel" scope="default" type="STRING"/>
-            <property expression="$body//operator" name="operator" scope="default" type="STRING"/>
-            <property expression="$body//taxAmount" name="taxAmount" scope="default" type="DOUBLE"/>
-            <property expression="$body//callbackURL" name="callbackURL" scope="default" type="STRING"/>
-            <property expression="$body//isSubscription" name="isSubscription" scope="default" type="BOOLEAN"/>
-            <property expression="$body//subscriptionID" name="subscriptionID" scope="default" type="STRING"/>
-            <property expression="$body//subscriptionName" name="subscriptionName" scope="default" type="STRING"/>
-            <property expression="$body//subscriptionDuration" name="subscriptionDuration" scope="default" type="INTEGER"/>
-            <property expression="$body//unSubURL" name="unSubURL" scope="default" type="STRING"/>
-            <property expression="$body//contactInfo" name="contactInfo" scope="default" type="STRING"/>
-            <property expression="$body//contentURL" name="contentURL" scope="default" type="STRING"/>
-            <property expression="$body//isWallet" name="isWallet" scope="default" type="BOOLEAN"/>
-            <property expression="$body//isMobileAppAPI" name="isMobileAppAPI" scope="default" type="BOOLEAN"/>
-            <property expression="$body//tacMSISDN" name="tacMSISDN" scope="default" type="STRING"/>
-            <property expression="$body//country" name="country" scope="default" type="STRING"/>
-            <property expression="$body//price" name="price" scope="default" type="STRING"/>
-            <property expression="$body//returnUrl" name="returnUrl" scope="default" type="STRING"/>
-            <property expression="$body//reference" name="reference" scope="default" type="STRING"/>
-            <property expression="$body//theme" name="theme" scope="default" type="STRING"/>
-            <property expression="fn:substring-after(get-property('MessageID'), 'urn:uuid:')" name="aocToken" scope="default" type="STRING"/>
-            <log>
-                <property expression="$ctx:aocToken" name="##############aocToken###############"/>
-            </log>
+            <sequence key="aocRequestInitSequence"/>
             <sequence key="aocRequestStoreSequence"/>
-            <payloadFactory media-type="json">
-                <format>{
-					"data" :
-					{ "aocToken" : "$1",
-					"aocTransID" : "$2",
-					"errorCode": "00",
-					"errorMessage": ""}
-					}</format>
-                <args>
-                    <arg evaluator="xml" expression="$ctx:aocToken"/>
-                    <arg evaluator="xml" expression="$ctx:spTransID"/>
-                </args>
-            </payloadFactory>
-            <respond/>
+            <sequence key="aocTokenResponseSequence"/>
         </inSequence>
         <outSequence/>
         <faultSequence/>
@@ -56,13 +12,23 @@
     <resource methods="GET" uri-template="/aoc?aocToken={token}">
         <inSequence>
             <property expression="$url:aocToken" name="aocToken" scope="default" type="STRING"/>
-            <log>
-                <property expression="$ctx:aocToken" name="****aoc token**"/>
-            </log>
             <sequence key="aocRequestRetriveSequence"/>
             <sequence key="centiliRedirectionSequence"/>
         </inSequence>
         <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="POST" url-mapping="/chargeStatus">
+        <inSequence>
+            <property expression="$body//apiKey" name="uri.var.apiKey" scope="default" type="STRING"/>
+            <property expression="$body//aocTransID" name="uri.var.aocTransID" scope="default" type="STRING"/>
+            <send>
+                <endpoint key="chargeStatus"/>
+            </send>
+        </inSequence>
+        <outSequence>
+            <sequence key="paymentStatusResponseProcessingSequence"/>
+        </outSequence>
         <faultSequence/>
     </resource>
 </api>

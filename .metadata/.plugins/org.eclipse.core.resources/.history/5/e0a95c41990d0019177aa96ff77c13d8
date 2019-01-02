@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/api" name="aocWrapper" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" url-mapping="/getAOCToken">
+        <inSequence>
+            <sequence key="aocRequestInitSequence"/>
+            <sequence key="aocRequestStoreSequence"/>
+            <payloadFactory media-type="json">
+                <format>{
+					"data" :
+					{ "aocToken" : "$1",
+					"aocTransID" : "$2",
+					"errorCode": "00",
+					"errorMessage": ""}
+					}</format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:aocToken"/>
+                    <arg evaluator="xml" expression="$ctx:spTransID"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="GET" uri-template="/aoc?aocToken={token}">
+        <inSequence>
+            <property expression="$url:aocToken" name="aocToken" scope="default" type="STRING"/>
+            <sequence key="aocRequestRetriveSequence"/>
+            <sequence key="centiliRedirectionSequence"/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="POST" uri-template="/chargeStatus">
+        <inSequence>
+            <property expression="$body//apiKey" name="uri.var.apiKey" scope="default" type="STRING"/>
+            <property expression="$body//aocTransID" name="uri.var.aocTransID" scope="default" type="STRING"/>
+            <send>
+                <endpoint key="chargeStatus"/>
+            </send>
+        </inSequence>
+        <outSequence>
+            <payloadFactory media-type="json">
+                <format>{
+					"transactionOperationStatus":$1,
+					"totalAmountCharged":$2,
+					"msisdn":$3,
+					"clientCorrelator":$4,
+					"errorCode":"00",
+					"errorMessage":""
+					}</format>
+                <args>
+                    <arg evaluator="json" expression="$.status"/>
+                    <arg evaluator="json" expression="$.price"/>
+                    <arg evaluator="json" expression="$.msisdn"/>
+                    <arg evaluator="json" expression="$.clientId"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+</api>

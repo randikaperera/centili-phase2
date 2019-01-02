@@ -23,25 +23,18 @@
             </filter>
         </else>
     </filter>
-    <call-template description="Call: aocErrorLogTemplate" target="aocErrorLogTemplate">
+    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+        <with-param name="logCategory" value="ERROR"/>
         <with-param name="sequenceName" value="aocErrorSequence"/>
         <with-param name="errorCode" value="{$ctx:errorCode}"/>
-        <with-param name="logMessage" value="{$ctx:logMessage}"/>
+        <with-param name="errorMessage" value="{$ctx:ERROR_MESSAGE}"/>
+        <with-param name="errorDetail" value="{$ctx:ERROR_DETAIL}"/>
     </call-template>
-    <payloadFactory description="" media-type="json">
-        <format>{
-			"data" :
-			{ "aocToken" : "$1",
-			"aocTransID" : "$2",
-			"errorCode": "$3",
-			"errorMessage": "$4"}
-			}</format>
-        <args>
-            <arg evaluator="xml" expression="$ctx:aocToken"/>
-            <arg evaluator="xml" expression="$ctx:spTransID"/>
-            <arg evaluator="xml" expression="$ctx:errorCode"/>
-            <arg evaluator="xml" expression="$ctx:errorMessage"/>
-        </args>
-    </payloadFactory>
+    <call-template description="Call: aocTokenResponseTemplate" target="aocTokenResponseTemplate">
+        <with-param name="aocToken" value="{$ctx:aocToken}"/>
+        <with-param name="spTransID" value="{$ctx:spTransID}"/>
+        <with-param name="errorCode" value="{$ctx:errorCode}"/>
+        <with-param name="errorMessage" value="{$ctx:errorMessage}"/>
+    </call-template>
     <respond/>
 </sequence>

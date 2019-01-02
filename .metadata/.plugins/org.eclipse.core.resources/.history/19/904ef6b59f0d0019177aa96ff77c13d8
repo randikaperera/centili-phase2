@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="paymentStatusResponseProcessingSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <filter regex="ACCEPTED" source="json-eval($.status)">
+        <then/>
+        <else/>
+    </filter>
+    <respond/>
+</sequence>

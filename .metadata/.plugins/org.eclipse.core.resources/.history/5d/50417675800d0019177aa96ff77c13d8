@@ -1,0 +1,11 @@
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="chargeStatus">
+	<http uri-template="http://api.centili.com/api/payment/1_4/transaction?transactionid="{uri.var.transactionId}"&amp;apikey="{uri.var.apiKey}"" method="get">
+		<suspendOnFailure>
+			<progressionFactor>1.0</progressionFactor>
+		</suspendOnFailure>
+		<markForSuspension>
+			<retriesBeforeSuspension>0</retriesBeforeSuspension>
+			<retryDelay>0</retryDelay>
+		</markForSuspension>
+	</http>
+</endpoint>

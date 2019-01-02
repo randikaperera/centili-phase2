@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocTokenResponseSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="json">
+        <format>{
+					"data" :
+					{ "aocToken" : "$1",
+					"aocTransID" : "$2",
+					"errorCode": "00",
+					"errorMessage": ""}
+					}</format>
+        <args>
+            <arg evaluator="xml" expression="$ctx:aocToken"/>
+            <arg evaluator="xml" expression="$ctx:spTransID"/>
+        </args>
+    </payloadFactory>
+    <respond/>
+</sequence>

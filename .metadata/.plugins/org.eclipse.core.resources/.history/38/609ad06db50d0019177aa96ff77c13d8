@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="renewSubscriptionResponseTemplate" xmlns="http://ws.apache.org/ns/synapse">
+    <sequence>
+        <payloadFactory media-type="json">
+            <format>{“data”:
+				{
+				“aocTransID”: “$1”,
+				“transactionOperationStatus”: “$2”,
+				“totalAmountCharged”: “$3”,
+				“errorCode”: “$4”,
+				“errorMessage”: “$5”
+				}
+				}</format>
+            <args/>
+        </payloadFactory>
+    </sequence>
+</template>

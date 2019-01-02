@@ -46,7 +46,8 @@ VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);]]></sql>
             <parameter expression="get-property('theme')" type="CHAR"/>
         </statement>
     </dbreport>
-    <call-template description="Call: aocInfoLogTemplate" target="aocInfoLogTemplate">
+    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+        <with-param name="logCategory" value="INFO"/>
         <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
         <with-param name="logMessage" value="AoC request saved successfully in database."/>
     </call-template>

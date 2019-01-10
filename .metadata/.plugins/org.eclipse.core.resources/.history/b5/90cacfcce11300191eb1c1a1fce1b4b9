@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/api" name="aocWrapper" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" url-mapping="/getAOCToken">
+        <inSequence>
+            <!-- 			<sequence key="aocRequestInitSequence" />
+ -->
+            <log level="custom">
+                <property expression="json-eval('$')" name="json payload++++++++++++++++"/>
+            </log>
+            <validate>
+                <schema key="conf:repository/AOC_schemas/aocRequestSchema.json"/>
+                <on-fail>
+                    <log level="custom">
+                        <property name="########" value="validation failed"/>
+                    </log>
+                </on-fail>
+            </validate>
+            <!-- 			<sequence key="aocRequestStoreSequence" />
+ 			<sequence key="aocTokenResponseSequence" />-->
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="GET" uri-template="/aoc?aocToken={token}">
+        <inSequence>
+            <property expression="$url:aocToken" name="aocToken" scope="default" type="STRING"/>
+            <sequence key="aocRequestRetriveSequence"/>
+            <sequence key="centiliRedirectionSequence"/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="POST" url-mapping="/chargeStatus">
+        <inSequence>
+            <property expression="$body//apiKey" name="uri.var.apiKey" scope="default" type="STRING"/>
+            <property expression="$body//aocTransID" name="uri.var.aocTransID" scope="default" type="STRING"/>
+            <send>
+                <endpoint key="chargeStatus"/>
+            </send>
+        </inSequence>
+        <outSequence>
+            <sequence key="chargeStatusResponseSequence"/>
+        </outSequence>
+        <faultSequence>
+            <sequence key="aocFaultSequence"/>
+        </faultSequence>
+    </resource>
+</api>

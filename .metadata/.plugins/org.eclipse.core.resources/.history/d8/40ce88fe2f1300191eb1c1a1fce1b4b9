@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="chargeStatusErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+        <with-param name="logCategory" value="ERROR"/>
+        <with-param name="sequenceName" value="$ctx:sequenceName"/>
+        <with-param name="errorCode" value="500"/>
+        <with-param name="errorMessage" value="error occurred in mediation."/>
+        <with-param name="errorDetail" value="{$ctx:ERROR_DETAIL}"/>
+    </call-template>
+    <call-template description="Call: chargeStatusResponseTemplate" target="paymentStatusResponseTemplate">
+        <with-param name="errorCode" value="AOC9999"/>
+        <with-param name="errorMessage" value="error occurred in mediation."/>
+    </call-template>
+    <respond/>
+</sequence>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocTokenResponseSequence" onError="aocErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property name="sequenceName" scope="default" type="STRING" value="aocTokenResponseSequence"/>
+    <call-template description="Call: aocTokenResponseTemplate" target="aocTokenResponseTemplate">
+        <with-param name="aocToken" value="{$ctx:aocToken}"/>
+        <with-param name="spTransID" value="{$ctx:spTransID}"/>
+        <with-param name="errorCode" value="00"/>
+    </call-template>
+    <property description="log Message" expression="fn:concat('Sent response with AOC token-',$ctx:aocToken,' successfully.')" name="logMessage" scope="default" type="STRING"/>
+    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+        <with-param name="logCategory" value="INFO"/>
+        <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
+        <with-param name="logMessage" value="{$ctx:logMessage}"/>
+    </call-template>
+    <respond/>
+</sequence>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="cancelSubscriptionResponseSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log>
+        <property expression="$axis2:HTTP_SC" name="http+++++++++++++++++++++Status" xmlns:ns="http://org.apache.synapse/xsd"/>
+    </log>
+    <switch source="json-eval($.status)">
+        <case regex="ACCEPTED">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="transactionid" value="{json-eval($.transactionid)}"/>
+                <with-param name="status" value="{json-eval($.status)}"/>
+                <with-param name="price" value="{json-eval($.price)}"/>
+                <with-param name="errorCode" value="00"/>
+            </call-template>
+        </case>
+        <default/>
+    </switch>
+    <respond/>
+</sequence>

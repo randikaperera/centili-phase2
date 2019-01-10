@@ -3,3 +3,4 @@
 1546328634905	Delete resource 'northboundAdaptor/src/main/synapse-config/sequences/paymentChargeStatusRequestProcessingSequence.xml'
 1546330981640	Delete resource 'northboundAdaptor/src/main/synapse-config/templates/paymentStatusResponsetemplate.xml'
 1546336842399	Delete 2 resources
+1546428738994	Delete resource 'northboundAdaptor/src/main/synapse-config/sequences/cancelSubscriptionResponse.xml'

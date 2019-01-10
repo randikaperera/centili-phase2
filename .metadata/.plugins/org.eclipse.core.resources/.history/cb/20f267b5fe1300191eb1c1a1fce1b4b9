@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocRequestValidateSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log level="custom">
+        <property name="**********" value="invoking validate mediator"/>
+    </log>
+    <validate>
+        <schema key="conf:repository/AOC_schemas/aocRequestSchema.json"/>
+        <on-fail>
+            <log level="custom">
+                <property name="########" value="validation failed"/>
+            </log>
+        </on-fail>
+    </validate>
+</sequence>

@@ -1,0 +1,7 @@
+1547010199023	Delete resource 'northboundAdaptor/src/main/synapse-config/sequences/chargeStatusResponseSequence.xml'
+1547010717510	Delete resource 'northboundAdaptor/src/main/synapse-config/sequences/charge.xml'
+1547010728472	Delete resource 'northboundAdaptor/src/main/synapse-config/sequences/paymentStatusRespomseSequence.xml'
+1547010738624	Delete resource 'northboundAdaptor/src/main/synapse-config/sequences/test.xml'
+1547010841197	Delete resource 'northboundAdaptor/src/main/synapse-config/templates/paymentStatusResponseTemplate.xml'
+1547010856030	Delete resource 'northboundAdaptor/src/main/synapse-config/sequences/paymentStatusResponseProcessingSequence.xml'
+1547033295800	Delete resource 'northboundAdaptor/src/main/synapse-config/api/jsonAPI.xml'

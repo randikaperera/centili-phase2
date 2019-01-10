@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="chargeStatusResponseSequence" onError="chargeStatusErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property name="sequenceName" scope="default" type="STRING" value="chargeStatusResponseSequence"/>
+    <filter regex="ACCEPTED" source="json-eval($.status)">
+        <then>
+            <call-template description="Call: chargeStatusResponseTemplate" target="chargeStatusResponseTemplate">
+                <with-param name="status" value="{json-eval($.status)}"/>
+                <with-param name="price" value="{json-eval($.price)}"/>
+                <with-param name="msisdn" value="{json-eval($.msisdn)}"/>
+                <with-param name="clientId" value="{json-eval($.clientId)}"/>
+                <with-param name="errorCode" value="00"/>
+            </call-template>
+            <log level="custom">
+                <property name="***********" value="calling logger template"/>
+            </log>
+            <call-template description="Call: loggerTemplate" target="loggerTemplate">
+                <with-param name="logCategory" value="INFO"/>
+                <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
+                <with-param name="logMessage" value="Charge status sent successfully"/>
+            </call-template>
+        </then>
+        <else>
+            <call-template description="Call: chargeStatusResponseTemplate" target="chargeStatusResponseTemplate">
+                <with-param name="errorCode" value="AOC9999"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+            <call-template description="Call: loggerTemplate" target="loggerTemplate">
+                <with-param name="logCategory" value="ERROR"/>
+                <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
+                <with-param name="errorCode" value="AOC9999"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+                <with-param name="errorDetail" value="server error occurred while processing the charge request."/>
+            </call-template>
+        </else>
+    </filter>
+    <respond/>
+</sequence>

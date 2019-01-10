@@ -26,12 +26,6 @@
     <artifact name="aocTokenResponseSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/aocTokenResponseSequence.xml</file>
     </artifact>
-    <artifact name="paymentStatusResponseProcessingSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/sequences/paymentStatusResponseProcessingSequence.xml</file>
-    </artifact>
-    <artifact name="paymentStatusResponseTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/templates/paymentStatusResponseTemplate.xml</file>
-    </artifact>
     <artifact name="aocTokenResponseTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/templates/aocTokenResponseTemplate.xml</file>
     </artifact>
@@ -49,5 +43,35 @@
     </artifact>
     <artifact name="renewSubscriptionResponseTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/templates/renewSubscriptionResponseTemplate.xml</file>
+    </artifact>
+    <artifact name="cancelSubscriptionRequestSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/cancelSubscriptionRequestSequence.xml</file>
+    </artifact>
+    <artifact name="cancelSubscriptionTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/cancelSubscriptionTemplate.xml</file>
+    </artifact>
+    <artifact name="cancelSubscriptionResponseSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/cancelSubscriptionResponseSequence.xml</file>
+    </artifact>
+    <artifact name="cancelSubscription" groupId="com.example.northboundAdaptor.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/cancelSubscription.xml</file>
+    </artifact>
+    <artifact name="chargeStatusErrorSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/chargeStatusErrorSequence.xml</file>
+    </artifact>
+    <artifact name="chargeStatusResponseTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/chargeStatusResponseTemplate.xml</file>
+    </artifact>
+    <artifact name="chargeStatusResponseSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/chargeStatusResponseSequence.xml</file>
+    </artifact>
+    <artifact name="aocFaultSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/aocFaultSequence.xml</file>
+    </artifact>
+    <artifact name="aocRequestValidateSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/aocRequestValidateSequence.xml</file>
+    </artifact>
+    <artifact name="chargeStatusValidateSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/chargeStatusValidateSequence.xml</file>
     </artifact>
 </artifacts>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="renewSubscriptionRequestSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="json">
+        <format>{
+			"apikey":"$1",
+			"price":"$2",
+			"priceid":"$3",
+			"mno":"$4",
+			"mccmnc":"$5",
+			"msisdn":"$6",
+			"clientid":"$7",
+			"userid":"$8",
+			"username":"$9",
+			"password":"$10",
+			"identid":"$11",
+			"country":"$12",
+			"params":"$13",
+			"returnurl":"$14"
+			}</format>
+        <args>
+            <arg evaluator="json" expression="$.apiKey"/>
+            <arg evaluator="json" expression="$.amount"/>
+            <arg evaluator="json" expression="$.priceId"/>
+            <arg evaluator="json" expression="$.operator"/>
+            <arg evaluator="json" expression="$.mccmnc"/>
+            <arg evaluator="json" expression="$.msisdn"/>
+            <arg evaluator="json" expression="$.clientId"/>
+            <arg evaluator="json" expression="$.userId"/>
+            <arg evaluator="json" expression="$.username"/>
+            <arg evaluator="json" expression="$.password"/>
+            <arg evaluator="json" expression="$.identId"/>
+            <arg evaluator="json" expression="$.country"/>
+            <arg evaluator="json" expression="$.params"/>
+            <arg evaluator="json" expression="$.returnUrl"/>
+        </args>
+    </payloadFactory>
+    <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+</sequence>

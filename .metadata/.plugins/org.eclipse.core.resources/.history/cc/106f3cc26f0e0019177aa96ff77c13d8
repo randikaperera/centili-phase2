@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/centili/api" name="mockServices" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/payment/1_4/transaction?transactionid={tranId}&amp;apikey={apiKey}">
+        <inSequence>
+            <!-- <payloadFactory media-type="json"> <format>{ "status": "ACCEPTED", "errorMessage": null, "transactionId": "3+enZv5EgW3N4M1j7I874Q==", "clientId": "you7651f3df98d1b1cdd34e1313ca4e3592", 
+				"apiKey": "0d213511cf2e2de4b309c37c1a66bddd", "chargeURL": "http:\/\/47.88.241.13:8077\/partners\/infobipdr", "wap": false, "price": 5, "countryCode": "ph", "operatorCode": 
+				"PH_GLOBE", "operatorType": "MOBILE", "msisdn": "xxxx51258629", "mcc": "515", "mnc": "01", "action": null, "sessionStatus": "COMPLETED", "urlRedirect": null, "pinPattern": 
+				null, "premiumInstructions": null, "handshakeInstructions": null, "shortCode": "2649", "mtShortCode": "2649", "smsBody": "CENT 5 PPS", "message": null }</format> 
+				<args /> </payloadFactory> -->
+            <payloadFactory media-type="json">
+                <format>{
+					"status": "SERVER-ERROR",
+					"errorMessage": "internal error",
+					"transactionId": null,
+					"clientId": null,
+					"apiKey": null,
+					"chargeURL": null,
+					"wap": null,
+					"price": null,
+					"countryCode": null,
+					"operatorCode": null,
+					"operatorType": null,
+					"msisdn": null,
+					"mcc": null,
+					"mnc": null,
+					"action": null,
+					"sessionStatus": null,
+					"urlRedirect": null,
+					"pinPattern": null,
+					"premiumInstructions": null,
+					"handshakeInstructions": null,
+					"shortCode": null,
+					"mtShortCode": null,
+					"smsBody": null,
+					"message": null
+					}</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="POST" url-mapping="/payment/1_4/subscribe">
+        <inSequence>
+            <payloadFactory media-type="json">
+                <format>{
+					"status": "ACCEPTED",
+					"transactionid": "123456789",
+					"clientid": "xxxxxxxxx",
+					"action": "URL_REDIRECT",
+					"redirecturl": " http://www.exampleURL.com",
+					"sessionStatus": "PENDING",
+					"countryCode": "es",
+					"price":"1.23",
+					"operatorCode":"oc",
+					"mcc":"sc",
+					"mnc":"fc",
+					"msisdn":"msisdn",
+					"apiKey": "123456abcdefg",
+					"errorMessage":null
+					}</format>
+                <args/>
+            </payloadFactory>
+            <!-- <payloadFactory media-type="json">
+				<format>{
+					"status": "ACCEPTED",
+					"transactionid": "123456789",
+					"clientid": "xxxxxxxxx",
+					"action": "PREMIUM",
+					"sessionStatus": "PENDING",
+					"countryCode": "es",
+					"price":"1.23",
+					"operatorCode":"oc",
+					"mcc":"sc",
+					"mnc":"fc",
+					"msisdn":"123s",
+					"apiKey": "123456abcdefg",
+					"premiumInstructions": "123456abcdefg",
+					"shortCode": "123456abcdefg",
+					"smsBody": "123456abcdefg",
+					"errorMessage":null
+					}</format>
+				<args />
+			</payloadFactory>
+			<payloadFactory media-type="json">
+				<format>{
+					"status": "ACCEPTED",
+					"transactionid": "123456789",
+					"clientid": "xxxxxxxxx",
+					"action": "HANDSHAKE",
+					"sessionStatus": "PENDING",
+					"countryCode": "es",
+					"price":"1.23",
+					"operatorCode":"oc",
+					"mcc":"sc",
+					"mnc":"fc",
+					"msisdn":"msisdn",
+					"apiKey": "123456abcdefg",
+					"handshakeInstructions":"sample instruction",
+					"errorMessage":null
+					}</format>
+				<args />
+			</payloadFactory>
+			<payloadFactory media-type="json">
+				<format>{
+					"status": "INVALID_PRICE",
+					"transactionid": null,
+					"clientid": null,
+					"action": null,
+					"redirecturl": null,
+					"sessionStatus": null,
+					"countryCode": null,
+					"apiKey": null,
+					"errorMessage":"invalid price"
+					}</format>
+				<args />
+			</payloadFactory>
+			<payloadFactory media-type="json">
+				<format>{
+					"status": "INVALID_MCCMNC",
+					"transactionid": null,
+					"clientid": null,
+					"action": null,
+					"redirecturl": null,
+					"sessionStatus": null,
+					"countryCode": null,
+					"apiKey": null,
+					"errorMessage":"invalid mccmnc"
+					}</format>
+				<args />
+			</payloadFactory><payloadFactory media-type="json">
+				<format>{
+					"status": "CHARGING_FAILED",
+					"transactionid": null,
+					"clientid": null,
+					"action": null,
+					"redirecturl": null,
+					"sessionStatus": null,
+					"countryCode": null,
+					"apiKey": null,
+					"errorMessage":"charging failed"
+					}</format>
+				<args />
+			</payloadFactory><payloadFactory media-type="json">
+				<format>{
+					"status": "EXISTING_SUBSCRIPTION",
+					"transactionid": null,
+					"clientid": null,
+					"action": null,
+					"redirecturl": null,
+					"sessionStatus": null,
+					"countryCode": null,
+					"apiKey": null,
+					"errorMessage":"existing subscription"
+					}</format>
+				<args />
+			</payloadFactory><payloadFactory media-type="json">
+				<format>{
+					"status": "INACTIVE",
+					"transactionid": null,
+					"clientid": null,
+					"action": null,
+					"redirecturl": null,
+					"sessionStatus": null,
+					"countryCode": null,
+					"apiKey": null,
+					"errorMessage":"inactive"
+					}</format>
+				<args />
+			</payloadFactory>
+ -->
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

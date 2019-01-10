@@ -7,16 +7,22 @@
     <parameter name="errorMessage"/>
     <sequence>
         <payloadFactory media-type="json">
-            <format>{“data”:
+            <format>{"data":
 				{
-				“aocTransID”: “$1”,
-				“transactionOperationStatus”: “$2”,
-				“totalAmountCharged”: “$3”,
-				“errorCode”: “$4”,
-				“errorMessage”: “$5”
+				"aocTransID": "$1",
+				"transactionOperationStatus": "$2",
+				"totalAmountCharged": "$3",
+				"errorCode": "$4",
+				"errorMessage": "$5"
 				}
 				}</format>
-            <args/>
+            <args>
+                <arg evaluator="xml" expression="$func:transactionid"/>
+                <arg evaluator="xml" expression="$func:status"/>
+                <arg evaluator="xml" expression="$func:price"/>
+                <arg evaluator="xml" expression="$func:errorCode"/>
+                <arg evaluator="xml" expression="$func:errorMessage"/>
+            </args>
         </payloadFactory>
     </sequence>
 </template>

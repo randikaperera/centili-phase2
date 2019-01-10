@@ -3,11 +3,15 @@
     <resource methods="POST" url-mapping="/getAOCToken">
         <inSequence>
             <sequence key="aocRequestInitSequence"/>
+            <sequence key="aocRequestValidateSequence"/>
             <sequence key="aocRequestStoreSequence"/>
             <sequence key="aocTokenResponseSequence"/>
+            <respond/>
         </inSequence>
         <outSequence/>
-        <faultSequence/>
+        <faultSequence>
+            <sequence key="aocErrorSequence"/>
+        </faultSequence>
     </resource>
     <resource methods="GET" uri-template="/aoc?aocToken={token}">
         <inSequence>
@@ -16,7 +20,9 @@
             <sequence key="centiliRedirectionSequence"/>
         </inSequence>
         <outSequence/>
-        <faultSequence/>
+        <faultSequence>
+            <sequence key="aocErrorSequence"/>
+        </faultSequence>
     </resource>
     <resource methods="POST" url-mapping="/chargeStatus">
         <inSequence>
@@ -27,8 +33,10 @@
             </send>
         </inSequence>
         <outSequence>
-            <sequence key="paymentStatusResponseProcessingSequence"/>
+            <sequence key="chargeStatusResponseSequence"/>
         </outSequence>
-        <faultSequence/>
+        <faultSequence>
+            <sequence key="aocErrorSequence"/>
+        </faultSequence>
     </resource>
 </api>

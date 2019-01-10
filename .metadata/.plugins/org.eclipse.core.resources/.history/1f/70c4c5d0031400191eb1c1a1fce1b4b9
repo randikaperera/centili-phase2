@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocRequestValidateSequence" onError="aocErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property name="sequenceName" scope="default" type="STRING" value="aocRequestValidateSequence"/>
+    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+        <with-param name="logCategory" value="INFO"/>
+        <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
+        <with-param name="logMessage" value="Validating AOC request payload against AOC json schema."/>
+    </call-template>
+    <validate>
+        <schema key="conf:repository/AOC_schemas/aocRequestSchema.json"/>
+        <on-fail>
+            <call-template description="Call: loggerTemplate" target="loggerTemplate">
+                <with-param name="logCategory" value="ERROR"/>
+                <with-param name="sequenceName" value="$ctx:sequenceName"/>
+                <with-param name="errorCode" value="AOC0001"/>
+                <with-param name="errorMessage" value="Failed to validate AOC request payload."/>
+                <with-param name="errorDetail" value="{$ctx:ERROR_DETAIL}"/>
+            </call-template>
+            <call-template description="Call: aocTokenResponseTemplate" target="aocTokenResponseTemplate">
+                <with-param name="errorCode" value="AOC0001"/>
+                <with-param name="errorMessage" value="Invalid Parameter."/>
+            </call-template>
+            <drop/>
+        </on-fail>
+    </validate>
+    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+        <with-param name="logCategory" value="INFO"/>
+        <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
+        <with-param name="logMessage" value="Successfully validated the AOC request payload."/>
+    </call-template>
+</sequence>

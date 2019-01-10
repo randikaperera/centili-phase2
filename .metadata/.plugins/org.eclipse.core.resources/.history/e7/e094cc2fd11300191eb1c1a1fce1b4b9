@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="loggerTemplate" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="sequenceName"/>
+    <parameter name="errorCode"/>
+    <parameter name="logMessage"/>
+    <parameter name="errorMessage"/>
+    <parameter name="errorDetail"/>
+    <parameter name="logCategory"/>
+    <sequence>
+        <filter regex="INFO" source="$func:logCategory">
+            <then>
+                <log level="custom">
+                    <property expression="$func:sequenceName" name="sequenceName"/>
+                    <property expression="$func:logMessage" name="logMessage"/>
+                </log>
+            </then>
+            <else>
+                <log category="DEBUG" level="custom">
+                    <property expression="$func:sequenceName" name="sequenceName"/>
+                    <property expression="$func:errorCode" name="errorCode"/>
+                    <property expression="$func:errorMessage" name="errorMessage"/>
+                    <property expression="$func:errorDetail" name="errorDetail"/>
+                </log>
+            </else>
+        </filter>
+    </sequence>
+</template>

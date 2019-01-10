@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/jsonAPI" name="jsonAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" protocol="http" uri-template="/jsonapi">
+        <inSequence>
+            <property expression="$url:jsonPayload" name="jsonKeyValue" scope="default" type="STRING"/>
+            <payloadFactory media-type="json">
+                <format>$1</format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('jsonKeyValue')"/>
+                </args>
+            </payloadFactory>
+            <validate>
+                <schema key="conf:/repository/AOC_schemas/aocRequestSchema.json"/>
+                <on-fail>
+                    <payloadFactory media-type="json">
+                        <format>{"Error":"$1"}</format>
+                        <args>
+                            <arg evaluator="xml" expression="$ctx:ERROR_MESSAGE"/>
+                        </args>
+                    </payloadFactory>
+                    <respond/>
+                </on-fail>
+            </validate>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

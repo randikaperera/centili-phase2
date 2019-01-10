@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="renewSubscriptionRequestSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="json">
+        <format>{
+			"apikey":"$1",
+			"price":"$2",
+			"mno":"$3",
+			"returnurl":"$4"
+			}</format>
+        <args>
+            <arg evaluator="json" expression="$.apiKey"/>
+            <arg evaluator="json" expression="$.amount"/>
+            <arg evaluator="json" expression="$.operator"/>
+            <arg evaluator="json" expression="$.returnUrl"/>
+        </args>
+    </payloadFactory>
+</sequence>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="paymentStatusResponseProcessingSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <filter regex="ACCEPTED" source="json-eval($.status)">
+        <then>
+            <call-template description="Call: paymentStatusResponseTemplate" target="paymentStatusResponseTemplate">
+                <with-param name="status" value="{json-eval($.status)}"/>
+                <with-param name="price" value="{json-eval($.price)}"/>
+                <with-param name="msisdn" value="{json-eval($.msisdn)}"/>
+                <with-param name="clientId" value="{json-eval($.clientId)}"/>
+                <with-param name="errorCode" value="00"/>
+            </call-template>
+        </then>
+        <else>
+            <call-template description="Call: paymentStatusResponseTemplate" target="paymentStatusResponseTemplate">
+                <with-param name="errorCode" value="AOC9999"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </else>
+    </filter>
+    <respond/>
+</sequence>

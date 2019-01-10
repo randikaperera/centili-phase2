@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="cancelSubscriptionResponseSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property expression="$axis2:HTTP_SC" name="statusCode" scope="default" type="STRING" xmlns:ns="http://org.apache.synapse/xsd"/>
+    <log>
+        <property expression="$axis2:HTTP_SC" name="http+++++++++++++++++++++Status" xmlns:ns="http://org.apache.synapse/xsd"/>
+    </log>
+    <switch source="get-property('statusCode')">
+        <case regex="202">
+            <call-template description="Call: cancelSubscriptionTemplate" target="cancelSubscriptionTemplate">
+                <with-param name="errorCode" value="00"/>
+                <with-param name="errorMessage" value="00"/>
+            </call-template>
+        </case>
+        <case regex="400">
+            <call-template description="Call: cancelSubscriptionTemplate" target="cancelSubscriptionTemplate">
+                <with-param name="errorCode" value="00"/>
+                <with-param name="errorMessage" value="00"/>
+            </call-template>
+        </case>
+        <case regex="406">
+            <call-template description="Call: cancelSubscriptionTemplate" target="cancelSubscriptionTemplate">
+                <with-param name="errorCode" value="00"/>
+                <with-param name="errorMessage" value="00"/>
+            </call-template>
+        </case>
+        <case regex="500">
+            <call-template description="Call: cancelSubscriptionTemplate" target="cancelSubscriptionTemplate">
+                <with-param name="errorCode" value="00"/>
+                <with-param name="errorMessage" value="00"/>
+            </call-template>
+        </case>
+        <default/>
+    </switch>
+    <respond/>
+</sequence>

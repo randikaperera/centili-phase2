@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="aocSchema1" groupId="com.example.northboundResources.resource" version="1.0.0" type="registry/resource" serverRole="GovernanceRegistry">
+        <item>
+            <file>aocRequestSchema.json</file>
+            <path>/_system/config/repository/AOC_schemas</path>
+            <mediaType>application/json</mediaType>
+        </item>
+    </artifact>
+    <artifact name="aocSchema2" groupId="com.example.northboundResources.resource" version="1.0.0" type="registry/resource" serverRole="GovernanceRegistry">
+        <item>
+            <file>chargeStatusSchema.json</file>
+            <path>/_system/config/repository/AOC_schemas</path>
+            <mediaType>application/json</mediaType>
+        </item>
+    </artifact>
+    <artifact name="chargeStatus" groupId="com.example.northboundResources.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseServiceBus">
+        <item>
+            <file>chargeStatus.xml</file>
+            <path>/_system/config/repository/AOC_endpoints</path>
+            <mediaType>application/vnd.wso2.esb.endpoint</mediaType>
+        </item>
+    </artifact>
+</artifacts>

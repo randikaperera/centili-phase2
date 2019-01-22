@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="aocTokenResponseTemplate" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="aocToken"/>
+    <parameter name="spTransID"/>
+    <parameter name="errorCode"/>
+    <parameter name="errorMessage"/>
+    <sequence>
+        <payloadFactory description="" media-type="json">
+            <format>{
+				"data" :
+				{ "aocToken" : "$1",
+				"aocTransID" : "$2",
+				"errorCode": "$3",
+				"errorMessage": "$4"}
+				}</format>
+            <args>
+                <arg evaluator="xml" expression="$func:aocToken"/>
+                <arg evaluator="xml" expression="$func:spTransID"/>
+                <arg evaluator="xml" expression="$func:errorCode"/>
+                <arg evaluator="xml" expression="$func:errorMessage"/>
+            </args>
+        </payloadFactory>
+    </sequence>
+</template>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="cancelSubscriptionTemplate" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="errorCode"/>
+    <parameter name="errorMessage"/>
+    <sequence>
+        <payloadFactory media-type="json">
+            <format> {"data":
+				{
+				"errorCode": "$1",
+				"errorMessage": "$2"
+				}
+				}</format>
+            <args>
+                <arg evaluator="xml" expression="$func:errorCode"/>
+                <arg evaluator="xml" expression="$func:errorMessage"/>
+            </args>
+        </payloadFactory>
+    </sequence>
+</template>

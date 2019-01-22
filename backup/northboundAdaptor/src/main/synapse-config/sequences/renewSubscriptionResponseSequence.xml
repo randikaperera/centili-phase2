@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="renewSubscriptionResponseSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <switch source="json-eval($.status)">
+        <case regex="ACCEPTED">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="transactionid" value="{json-eval($.transactionid)}"/>
+                <with-param name="status" value="{json-eval($.status)}"/>
+                <with-param name="price" value="{json-eval($.price)}"/>
+                <with-param name="errorCode" value="00"/>
+            </call-template>
+        </case>
+        <case regex="CHARGING_FAILED">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="errorCode" value="AOC1007"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </case>
+        <case regex="EXISTING_SUBSCRIPTION">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="errorCode" value="AOC2001"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </case>
+        <case regex="INVALID_REQUEST">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="errorCode" value="AOC0001"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </case>
+        <case regex="INVALID_SERVICE">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="errorCode" value="AOC5001"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </case>
+        <case regex="UNAUTHORIZED">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="errorCode" value="AOC0003"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </case>
+        <case regex="INACTIVE">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="errorCode" value="AOC9999"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </case>
+        <case regex="INVALID_MSISDN">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="errorCode" value="AOC1006"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </case>
+        <case regex="INVALID_OPERATOR_CODE">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="errorCode" value="AOC1005"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </case>
+        <case regex="INVALID_MCCMNC">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="errorCode" value="AOC0001"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </case>
+        <case regex="INVALID_PRICE">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="errorCode" value="AOC0001"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </case>
+        <case regex="DAILY_LIMIT_EXCEEDED">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="errorCode" value="AOC2004"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </case>
+        <case regex="MONTHLY_LIMIT_EXCEEDED">
+            <call-template description="Call: renewSubscriptionResponseTemplate" target="renewSubscriptionResponseTemplate">
+                <with-param name="errorCode" value="AOC2004"/>
+                <with-param name="errorMessage" value="{json-eval($.errorMessage)}"/>
+            </call-template>
+        </case>
+        <default/>
+    </switch>
+    <respond/>
+</sequence>

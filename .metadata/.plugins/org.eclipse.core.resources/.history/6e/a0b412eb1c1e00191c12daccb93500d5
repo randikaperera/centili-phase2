@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="SchemaResource1" groupId="com.example.northboundResources.resource" version="1.0.0" type="registry/resource" serverRole="GovernanceRegistry">
+        <item>
+            <file>aocRequestSchema.json</file>
+            <path>/_system/config/custom</path>
+            <mediaType>application/json</mediaType>
+        </item>
+    </artifact>
+</artifacts>

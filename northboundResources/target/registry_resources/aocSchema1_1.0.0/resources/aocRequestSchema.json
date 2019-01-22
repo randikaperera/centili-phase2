@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "apiKey": {
+      "type": "string","minLength":1
+    },
+    "username": {
+      "type": "string","minLength":1
+    },
+    "spTransID": {
+      "type": "string","minLength":1
+    },
+    "description": {
+      "type": "string","minLength":1
+    },
+    "currency": {
+      "type": "string","minLength":1
+    },
+    "amount": {
+      "type": "number","minLength":1
+    },
+    "onBehalfOf": {
+      "type": "string","minLength":1
+    },
+    "purchaseCategoryCode": {
+      "type": "string","minLength":1
+    },
+    "referenceCode": {
+      "type": "string","minLength":1
+    },
+    "channel": {
+      "type": "string","minLength":1
+    },
+    "operator": {
+      "type": "string","minLength":1
+    },
+    "taxAmount": {
+      "type": "number","minLength":1
+    },
+    "callbackURL": {
+      "type": "string","minLength":1
+    },
+    "isSubscription": {
+      "type": "boolean","minLength":1
+    },
+    "subscriptionID": {
+      "type": "string","minLength":1
+    },
+    "subscriptionName": {
+      "type": "string","minLength":1
+    },
+    "subscriptionDuration": {
+      "type": "integer","minLength":1
+    },
+    "unSubURL": {
+      "type": "string","minLength":1
+    },
+    "contactInfo": {
+      "type": "string","minLength":1
+    },
+    "contentURL": {
+      "type": "string","minLength":1
+    },
+    "isWallet": {
+      "type": "boolean","minLength":1
+    },
+    "isMobileAppAPI": {
+      "type": "boolean","minLength":1
+    },
+    "tacMSISDN": {
+      "type": "string","minLength":1
+    },
+    "country": {
+      "type": "string","minLength":1
+    }
+  },
+  "required": [
+    "apiKey",
+    "username",
+    "spTransID",
+    "description",
+    "currency",
+    "amount",
+    "onBehalfOf",
+    "purchaseCategoryCode",
+    "referenceCode",
+    "channel",
+    "operator",
+    "taxAmount",
+    "callbackURL",
+    "isSubscription",
+    "contactInfo",
+    "country"
+  ]
+}

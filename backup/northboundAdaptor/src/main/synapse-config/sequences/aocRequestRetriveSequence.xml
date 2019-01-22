@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocRequestRetriveSequence" onError="aocErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property name="sequenceName" scope="default" type="STRING" value="aocRequestRetriveSequence"/>
+    <property description="log Message" expression="fn:concat('Started to read AOC data relevant to the AOC token-',$ctx:aocToken,'.')" name="logMessage" scope="default" type="STRING"/>
+    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+        <with-param name="logCategory" value="INFO"/>
+        <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
+        <with-param name="logMessage" value="{$ctx:logMessage}"/>
+    </call-template>
+    <dblookup>
+        <connection>
+            <pool>
+                <dsName>jdbc/centili</dsName>
+            </pool>
+        </connection>
+        <statement>
+            <sql><![CDATA[select apiKey,country,amount,theme,callbackURL,referenceCode from centili.aocRequest where aocToken=?]]></sql>
+            <parameter expression="$ctx:aocToken" type="CHAR"/>
+            <result column="country" name="country"/>
+            <result column="amount" name="amount"/>
+            <result column="apiKey" name="apiKey"/>
+            <result column="theme" name="theme"/>
+            <result column="callbackURL" name="callbackUrl"/>
+            <result column="referenceCode" name="referenceCode"/>
+        </statement>
+    </dblookup>
+    <filter regex="false" source="boolean(get-property('apiKey'))">
+        <then>
+            <property name="tokenStatus" scope="default" type="STRING" value="invalid"/>
+            <sequence key="aocErrorSequence"/>
+        </then>
+        <else>
+            <property name="tokenStatus" scope="default" type="STRING" value="valid"/>
+            <call-template description="Call: loggerTemplate" target="loggerTemplate">
+                <with-param name="logCategory" value="INFO"/>
+                <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
+                <with-param name="logMessage" value="Valid token found.Retrived AOC data successfully from database."/>
+            </call-template>
+        </else>
+    </filter>
+</sequence>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <item>
+        <file>chargeStatusSchema.json</file>
+        <path>/_system/config/repository/AOC_schemas</path>
+        <mediaType>application/json</mediaType>
+    </item>
+</resources>

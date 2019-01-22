@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocRequestValidateSequence" onError="aocErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property name="sequenceName" scope="default" type="STRING" value="aocRequestValidateSequence"/>
+    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+        <with-param name="logCategory" value="INFO"/>
+        <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
+        <with-param name="logMessage" value="Validating AOC request payload against AOC json schema."/>
+    </call-template>
+    <property name="schema" scope="default" type="STRING" value="conf:repository/AOC_schemas/aocRequestSchema.json"/>
+    <switch source="get-property('requestType')">
+        <case regex="tokenRequest">
+            <validate>
+                <schema key="get-property('schema')"/>
+                <on-fail>
+                    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+                        <with-param name="logCategory" value="ERROR"/>
+                        <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
+                        <with-param name="errorCode" value="AOC0001"/>
+                        <with-param name="errorMessage" value="Failed to validate AOC request payload."/>
+                        <with-param name="errorDetail" value="{$ctx:ERROR_DETAIL}"/>
+                    </call-template>
+                    <call-template description="Call: aocTokenResponseTemplate" target="aocTokenResponseTemplate">
+                        <with-param name="errorCode" value="AOC0001"/>
+                        <with-param name="errorMessage" value="Invalid Parameter."/>
+                    </call-template>
+                    <respond/>
+                    <!-- 				<schema key="conf:repository/AOC_schemas/aocRequestSchema.json" />
+ -->
+                </on-fail>
+            </validate>
+        </case>
+        <case regex="chargeStatusRequest">
+            <validate>
+                <schema key="conf:repository/AOC_schemas/chargeStatusSchema.json"/>
+                <on-fail>
+                    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+                        <with-param name="logCategory" value="ERROR"/>
+                        <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
+                        <with-param name="errorCode" value="AOC0001"/>
+                        <with-param name="errorMessage" value="Failed to validate AOC request payload."/>
+                        <with-param name="errorDetail" value="{$ctx:ERROR_DETAIL}"/>
+                    </call-template>
+                    <call-template description="Call: aocTokenResponseTemplate" target="aocTokenResponseTemplate">
+                        <with-param name="errorCode" value="AOC0001"/>
+                        <with-param name="errorMessage" value="Invalid Parameter."/>
+                    </call-template>
+                    <respond/>
+                </on-fail>
+            </validate>
+        </case>
+        <default/>
+    </switch>
+    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+        <with-param name="logCategory" value="INFO"/>
+        <with-param name="sequenceName" value="{$ctx:sequenceName}"/>
+        <with-param name="logMessage" value="Successfully validated the AOC request payload."/>
+    </call-template>
+</sequence>

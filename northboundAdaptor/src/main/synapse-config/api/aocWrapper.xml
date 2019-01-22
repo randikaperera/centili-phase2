@@ -2,6 +2,7 @@
 <api context="/api" name="aocWrapper" xmlns="http://ws.apache.org/ns/synapse">
     <resource methods="POST" url-mapping="/getAOCToken">
         <inSequence>
+            <property name="requestType" scope="default" type="STRING" value="tokenRequest"/>
             <sequence key="aocRequestInitSequence"/>
             <sequence key="aocRequestValidateSequence"/>
             <sequence key="aocRequestStoreSequence"/>
@@ -28,8 +29,10 @@
         <inSequence>
             <property expression="$body//apiKey" name="uri.var.apiKey" scope="default" type="STRING"/>
             <property expression="$body//aocTransID" name="uri.var.aocTransID" scope="default" type="STRING"/>
+            <property name="requestType" scope="default" type="STRING" value="chargeStatusRequest"/>
+            <sequence key="aocRequestValidateSequence"/>
             <send>
-                <endpoint key="chargeStatus"/>
+                <endpoint key="conf:repository/AOC_endpoints/chargeStatus.xml"/>
             </send>
         </inSequence>
         <outSequence>

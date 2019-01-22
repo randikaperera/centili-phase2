@@ -32,30 +32,6 @@
     <artifact name="loggerTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/templates/loggerTemplate.xml</file>
     </artifact>
-    <artifact name="renewSubscriptionRequestSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/sequences/renewSubscriptionRequestSequence.xml</file>
-    </artifact>
-    <artifact name="renewSubscription" groupId="com.example.northboundAdaptor.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/endpoints/renewSubscription.xml</file>
-    </artifact>
-    <artifact name="renewSubscriptionResponseSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/sequences/renewSubscriptionResponseSequence.xml</file>
-    </artifact>
-    <artifact name="renewSubscriptionResponseTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/templates/renewSubscriptionResponseTemplate.xml</file>
-    </artifact>
-    <artifact name="cancelSubscriptionRequestSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/sequences/cancelSubscriptionRequestSequence.xml</file>
-    </artifact>
-    <artifact name="cancelSubscriptionTemplate" groupId="com.example.northboundAdaptor.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/templates/cancelSubscriptionTemplate.xml</file>
-    </artifact>
-    <artifact name="cancelSubscriptionResponseSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/sequences/cancelSubscriptionResponseSequence.xml</file>
-    </artifact>
-    <artifact name="cancelSubscription" groupId="com.example.northboundAdaptor.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/endpoints/cancelSubscription.xml</file>
-    </artifact>
     <artifact name="chargeStatusErrorSequence" groupId="com.example.northboundAdaptor.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/sequences/chargeStatusErrorSequence.xml</file>
     </artifact>

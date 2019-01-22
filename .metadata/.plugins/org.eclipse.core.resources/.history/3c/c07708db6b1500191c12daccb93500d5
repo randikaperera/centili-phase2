@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="aocErrorSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <filter regex="invalid" source="get-property('tokenStatus')">
+        <then>
+            <property name="errorCode" scope="default" type="STRING" value="AOC0003"/>
+            <property name="errorMessage" scope="default" type="STRING" value="invalid aoc token found"/>
+            <property name="ERROR_MESSAGE" scope="default" type="STRING" value="invalid AOC token found"/>
+            <property expression="fn:concat('can not find the db record for the token : ',$ctx:aocToken) " name="ERROR_DETAIL" scope="default" type="STRING"/>
+        </then>
+        <else>
+            <filter regex=".*SQL Error.*" source="$ctx:ERROR_MESSAGE">
+                <then>
+                    <property name="errorCode" scope="default" type="STRING" value="AOC9999"/>
+                    <property name="errorMessage" scope="default" type="STRING" value="sql error occurred"/>
+                </then>
+                <else>
+                    <property name="errorCode" scope="default" type="STRING" value="AOC9999"/>
+                    <property name="errorMessage" scope="default" type="STRING" value="error occurred in mediation"/>
+                </else>
+            </filter>
+        </else>
+    </filter>
+    <call-template description="Call: loggerTemplate" target="loggerTemplate">
+        <with-param name="logCategory" value="ERROR"/>
+        <with-param name="sequenceName" value="aocErrorSequence"/>
+        <with-param name="errorCode" value="{$ctx:errorCode}"/>
+        <with-param name="errorMessage" value="{$ctx:ERROR_MESSAGE}"/>
+        <with-param name="errorDetail" value="{$ctx:ERROR_DETAIL}"/>
+    </call-template>
+    <call-template description="Call: aocTokenResponseTemplate" target="aocTokenResponseTemplate">
+        <with-param name="errorCode" value="{$ctx:errorCode}"/>
+        <with-param name="errorMessage" value="{$ctx:errorMessage}"/>
+    </call-template>
+    <respond/>
+</sequence>

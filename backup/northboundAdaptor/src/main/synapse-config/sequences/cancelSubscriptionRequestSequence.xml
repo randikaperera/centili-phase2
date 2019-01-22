@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="cancelSubscriptionRequestSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log level="custom">
+        <property expression="get-property('SYSTEM_DATE')" name="#####******#####"/>
+    </log>
+    <payloadFactory media-type="json">
+        <format>{
+			"subscriptionid":"$1",
+			"apikey":"$2",
+			"timestamp":"$3",
+			"userid":"$4",
+			"sign":"$5"
+			}</format>
+        <args>
+            <arg evaluator="json" expression="$.subscriptionID"/>
+            <arg evaluator="json" expression="$.apiKey"/>
+            <arg evaluator="xml" expression="get-property('SYSTEM_TIME')"/>
+            <arg evaluator="json" expression="$.userId"/>
+            <arg evaluator="json" expression="$.sign"/>
+        </args>
+    </payloadFactory>
+</sequence>
